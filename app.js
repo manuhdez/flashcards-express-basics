@@ -7,8 +7,8 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/hello', (req, res) => {
-  res.send('<h1>Hello Javascript developer</h1>');
+app.get('/cards', (req, res) => {
+  res.render('cards', { propmt: 'Who is buried in grants tomb?', hint: 'Think about whose tomb it is.'});
 });
 
 app.listen(3000, () => {
