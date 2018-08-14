@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 const colors = [
   'red',
@@ -10,6 +11,8 @@ const colors = [
   'purple'
 ];
 
+// app configuration
+app.use(bodyParser.urlencoded({extended: false}));
 app.set('view engine', 'pug');
 
 // home route
@@ -28,7 +31,9 @@ app.get('/hello', (req, res) => {
 });
 
 app.post('/hello', (req, res) => {
-  res.render('hello');
+  const username = req.body.username;
+
+  res.render('hello', { username: username} );
 });
 
 
