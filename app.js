@@ -20,8 +20,11 @@ app.set('view engine', 'pug');
 // home route
 app.get('/', (req, res) => {
   const username = req.cookies.username;
-
-  res.render('index', { username });
+  if (username) {
+    res.render('index', { username });
+  } else {
+    res.redirect('/hello');
+  }
 });
 
 // cards route
@@ -31,13 +34,24 @@ app.get('/cards', (req, res) => {
 
 // hello route
 app.get('/hello', (req, res) => {
-  res.render('hello');
+  const username = req.cookies.username;
+  if (username) {
+    res.redirect('/');
+  } else {
+    res.render('hello');
+  }
 });
 
 app.post('/hello', (req, res) => {
   const username = req.body.username;
   res.cookie('username', username);
 
+  res.redirect('/');
+});
+
+// goodbye route
+app.post('/goodbye', (req, res) => {
+  res.clearCookie('username');
   res.redirect('/');
 });
 
