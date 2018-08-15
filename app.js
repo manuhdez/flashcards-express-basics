@@ -17,6 +17,17 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.set('view engine', 'pug');
 
+// Middleware
+app.use((req, res, next) => {
+  req.message = 'I went through the request';
+  next();
+});
+
+app.use((req, res, next) => {
+  console.log(req.message);
+  next();
+});
+
 // home route
 app.get('/', (req, res) => {
   const username = req.cookies.username;
