@@ -20,6 +20,7 @@ app.set('view engine', 'pug');
 // Middleware
 app.use((req, res, next) => {
   const err = new Error('Oh no! Something went wrong');
+  err.status = 500;
   next(err);
 });
 
@@ -64,6 +65,13 @@ app.post('/hello', (req, res) => {
 app.post('/goodbye', (req, res) => {
   res.clearCookie('username');
   res.redirect('/');
+});
+
+// Error middleware
+app.use((err, req, res, next) => {
+  res.locals.error = err;
+  res.status(err.status);
+  res.render('error');
 });
 
 
