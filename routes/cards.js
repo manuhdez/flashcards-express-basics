@@ -18,7 +18,7 @@ router.get('/:id', (req, res) => {
   let link = {};
 
   if (!side) {
-    res.redirect(`/cards/${id}?side=question`);
+    return res.redirect(`/cards/${id}?side=question`);
   }
 
   if (side === 'answer') {
