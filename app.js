@@ -19,8 +19,8 @@ app.set('view engine', 'pug');
 
 // Middleware
 app.use((req, res, next) => {
-  req.message = 'I went through the request';
-  next();
+  const err = new Error('Oh no! Something went wrong');
+  next(err);
 });
 
 app.use((req, res, next) => {
