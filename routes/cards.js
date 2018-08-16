@@ -5,11 +5,15 @@ const { cards } = data;
 
 // Cards Routes
 router.get('/:id', (req, res) => {
-  const cardId = req.params.id;
-  res.render('cards', {
-    prompt: cards[cardId].question,
-    hint: cards[cardId].hint
-  });
+  const { side } = req.query;
+  const { id } = req.params;
+  const text = cards[id][side];
+  let { hint } = cards[id];
+  if (side === 'answer') hint = null;
+
+  const templateData = { text, hint };
+
+  res.render('cards', templateData);
 });
 
 module.exports = router;
