@@ -2,9 +2,5 @@ extends layout.pug
 
 block content
   section#content
-    if username
-      h3 Hello #{username}!
-      form(action="/goodbye", method="post")
-        button(type="submit") Goodbye
-    else
-      h2 Welcome, student!
+    p
+      a(href="/cards") Begin!
