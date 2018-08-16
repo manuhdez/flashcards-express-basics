@@ -17,18 +17,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.set('view engine', 'pug');
 
-// Middleware
-app.use((req, res, next) => {
-  const err = new Error('Oh no! Something went wrong');
-  err.status = 500;
-  next(err);
-});
-
-app.use((req, res, next) => {
-  console.log(req.message);
-  next();
-});
-
+// ****** Routes *********
 // home route
 app.get('/', (req, res) => {
   const username = req.cookies.username;
@@ -66,6 +55,13 @@ app.post('/goodbye', (req, res) => {
   res.clearCookie('username');
   res.redirect('/');
 });
+
+// 404 handler
+app.use((req, res, next) => {
+  const err = new Error('Page not Found');
+  err.status = 404;
+  next(err);
+})
 
 // Error middleware
 app.use((err, req, res, next) => {
