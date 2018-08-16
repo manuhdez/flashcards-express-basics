@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
 
   }
 
-  const templateData = { text, hint, link, username };
+  const templateData = { text, hint, link, username, side };
 
   res.render('cards', templateData);
 });
