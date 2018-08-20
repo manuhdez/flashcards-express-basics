@@ -595,3 +595,33 @@ input {
 	margin-bottom: 3px;
 	margin-left: 1px;
 }
+
+/* New card form */
+#new-card-form {
+	width: 350px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+}
+
+#new-card-form label {
+	width: 100%;
+	margin-bottom: 6px;
+}
+
+#new-card-form input {
+	width: 100%;
+	padding: 6px;
+	margin-bottom: 12px;
+	text-align: left;
+}
+
+#new-card-form button {
+	margin-top: 25px;
+	padding: 10px;
+	background-color: #a1c45a;
+	color: white;
+}

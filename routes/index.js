@@ -34,4 +34,9 @@ router.post('/goodbye', (req, res) => {
   res.redirect('/');
 });
 
+// new card routes
+router.get('/new', (req, res) => {
+  res.render('new');
+});
+
 module.exports = router;
