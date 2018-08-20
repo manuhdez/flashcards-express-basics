@@ -1,12 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
+const firebase = require('firebase');
+
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyAMXFB2-f91eOJ7TcCmJb56foCr6IEc8i0",
+  authDomain: "flashcards-node.firebaseapp.com",
+  databaseURL: "https://flashcards-node.firebaseio.com",
+  projectId: "flashcards-node",
+  storageBucket: "flashcards-node.appspot.com",
+  messagingSenderId: "816221392665"
+};
+firebase.initializeApp(config);
+
+// Database
+const database = firebase.database();
 const { data } = require('../data/flashcardData.json');
 const { cards } = data;
 
+
+
 // Cards Routes
 router.get('/', (req, res) => {
-  const randomCard = Math.floor(Math.random() * cards.length);
+  let cardsData = [];
+  database.ref('/data/cards').once('value').then( snapshot => cardsData.push(snapshot.val()));
+  const randomCard = Math.floor(Math.random() * cardsData.length);
   res.redirect(`/cards/${randomCard}?side=question`);
 });
 
