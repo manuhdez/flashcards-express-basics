@@ -250,6 +250,7 @@ header img {
 body {
 	background-color: #edead9;
 	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+	height: 100vh;
 }
 
 h1 {
@@ -480,7 +481,6 @@ input {
 	position: absolute;
 	bottom: 10px;
 	left: 20px;
-	padding-left: 500px;
 }
 
 .card-flip {
@@ -571,4 +571,27 @@ input {
 	background-repeat: repeat-x;
 	width: 100%;
 	height: 24px;
+}
+
+.new-card {
+	background-color: #a1c45a;
+	color: white;
+	position: absolute;
+	bottom: 30px;
+	right: 30px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.new-card > p {
+	font-size: 1.5rem;
+	margin: 0;
+	width: 23px;
+	height: 23px;
+	margin-bottom: 3px;
+	margin-left: 1px;
 }
