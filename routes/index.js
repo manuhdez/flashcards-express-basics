@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const firebase = require('../private/firebaseinit');
 
 // home route
 router.get('/', (req, res) => {
@@ -38,5 +39,27 @@ router.post('/goodbye', (req, res) => {
 router.get('/new', (req, res) => {
   res.render('new');
 });
+
+router.post('/new', (req, res) => {
+  let question = req.body.question;
+  let hint = req.body.hint;
+  let answer = req.body.answer;
+
+  function writeQuestionData(question, hint, answer) {
+    firebase.database().ref('data/cards').push({
+      question,
+      hint,
+      answer
+    });
+  }
+
+  writeQuestionData(question, hint, answer);
+
+  res.redirect('/cards');
+});
+
+router.get('/database', (req, res) => {
+  res.json(req.body);
+})
 
 module.exports = router;
