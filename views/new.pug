@@ -1,7 +1,7 @@
 extends layout
 
 block main
-  form#new-card-form(action="/cards/new", method="post")
+  form#new-card-form(action="/new", method="post")
     label(for="question") Question:
     input(type="text", name="question", id="question")
     label(for="question-hint") Hint:
